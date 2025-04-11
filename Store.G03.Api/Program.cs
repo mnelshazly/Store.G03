@@ -3,6 +3,10 @@ using Domain.Contracts;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 using Persistence.Data;
+using Services;
+using Services.Abstractions;
+
+using AssemblyMapping = Services.AssemblyReference;
 
 namespace Store.G03.Api
 {
@@ -24,7 +28,10 @@ namespace Store.G03.Api
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
             builder.Services.AddScoped<IDbInitializer, DbInitializer>();
-            
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+            builder.Services.AddScoped<IServiceManager, ServiceManager>();
+            builder.Services.AddAutoMapper(typeof(AssemblyMapping).Assembly);
+
             var app = builder.Build();
 
             #region Seeding
