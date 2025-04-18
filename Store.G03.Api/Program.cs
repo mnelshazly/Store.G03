@@ -50,6 +50,7 @@ namespace Store.G03.Api
             }
 
             app.UseHttpsRedirection();
+            app.UseStaticFiles();
 
             app.UseAuthorization();
 
