@@ -30,7 +30,7 @@ namespace Presentation
             return Ok(result); // 200
         }
 
-        [HttpGet("Brands")] // GET: /api/products/Brands
+        [HttpGet("brands")] // GET: /api/products/Brands
         public async Task<IActionResult> GetAllBrands()
         {
             var result = await serviceManager.ProductService.GetAllBrandsAsync();
@@ -39,7 +39,7 @@ namespace Presentation
             return Ok(result); // 200
         }
 
-        [HttpGet("Types")] // GET: /api/products/Types
+        [HttpGet("types")] // GET: /api/products/Types
         public async Task<IActionResult> GetAllTypes()
         {
             var result = await serviceManager.ProductService.GetAllTypesAsync();
