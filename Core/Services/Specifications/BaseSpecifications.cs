@@ -11,12 +11,12 @@ namespace Services.Specifications
 {
     abstract class BaseSpecifications<TEntity, TKey> : ISpecifications<TEntity, TKey> where TEntity : BaseEntity<TKey>
     {
-        protected BaseSpecifications(Expression<Func<TEntity, bool>> CiteriaExpression)
+        protected BaseSpecifications(Expression<Func<TEntity, bool>>? CiteriaExpression)
         {
             Criteria = CiteriaExpression;
         }
 
-        public Expression<Func<TEntity, bool>> Criteria { get; private set; }
+        public Expression<Func<TEntity, bool>>? Criteria { get; private set; }
 
         public List<Expression<Func<TEntity, object>>> IncludeExpressions { get; } = [];
 
