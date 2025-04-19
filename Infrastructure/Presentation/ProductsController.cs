@@ -14,7 +14,7 @@ namespace Presentation
     public class ProductsController(IServiceManager serviceManager) : ControllerBase
     {
         [HttpGet] // GET: /api/products
-        public async Task<IActionResult> GetAllProducts([FromQuery] ProductQueryParams queryParams)
+        public async Task<ActionResult<PaginatedResult<ProductResultDto>>> GetAllProducts([FromQuery] ProductQueryParams queryParams)
         {
             var result = await serviceManager.ProductService.GetAllProductsAsync(queryParams);
             if (result is null) return BadRequest(); // 400
