@@ -13,5 +13,7 @@ namespace Domain.Contracts
         // Property Signature For Each Dynamic Part in Query
         public Expression<Func<TEntity, bool>>? Criteria { get; }
         public List<Expression<Func<TEntity , object>>> IncludeExpressions { get; }
+        public Expression<Func<TEntity, object>> OrderBy { get; }
+        public Expression<Func<TEntity, object>> OrderByDescending { get; }
     }
 }
