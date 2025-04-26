@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
-using Domain.Models;
 using Shared;
 using Microsoft.Extensions.Configuration;
+using Domain.Models.ProductModule;
 
 namespace Services.MappingProfiles
 {

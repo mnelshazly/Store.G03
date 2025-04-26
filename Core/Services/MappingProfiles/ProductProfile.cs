@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
-using Domain.Models;
+using Domain.Models.ProductModule;
 using Shared;
 
 namespace Services.MappingProfiles
