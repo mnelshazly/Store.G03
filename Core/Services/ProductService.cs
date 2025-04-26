@@ -7,6 +7,7 @@ using AutoMapper;
 using Domain.Contracts;
 using Domain.Exceptions;
 using Domain.Models;
+using Domain.Models.ProductModule;
 using Services.Abstractions;
 using Services.Specifications;
 using Shared;

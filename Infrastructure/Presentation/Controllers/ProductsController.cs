@@ -8,7 +8,7 @@ using Services.Abstractions;
 using Shared;
 using Shared.DataTransferObjects.ProductModuleDtos;
 
-namespace Presentation
+namespace Presentation.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
