@@ -1,11 +1,14 @@
 
 using Domain.Contracts;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 using Persistence.Data;
 using Services;
 using Services.Abstractions;
+using Shared.ErrorModels;
 using Store.G03.Api.CustomMiddleWare;
+using Store.G03.Api.Factories;
 using AssemblyMapping = Services.AssemblyReference;
 
 namespace Store.G03.Api
@@ -31,6 +34,10 @@ namespace Store.G03.Api
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
             builder.Services.AddScoped<IServiceManager, ServiceManager>();
             builder.Services.AddAutoMapper(typeof(AssemblyMapping).Assembly);
+            builder.Services.Configure<ApiBehaviorOptions>((options) =>
+            {
+                options.InvalidModelStateResponseFactory = ApiResponseFactory.GenerateApiValidationErrorsResponse;
+            });
 
             var app = builder.Build();
 
