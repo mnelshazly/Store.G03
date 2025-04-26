@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using System.Text.Json;
+using Domain.Exceptions;
 using Shared.ErrorModels;
 
 namespace Store.G03.Api.CustomMiddleWare
@@ -28,7 +29,13 @@ namespace Store.G03.Api.CustomMiddleWare
                 // Set Status Code For Response
 
                 //context.Response.StatusCode = (int) HttpStatusCode.InternalServerError;
-                context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+                //context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+                
+                context.Response.StatusCode = ex switch
+                {
+                    NotFoundException => StatusCodes.Status404NotFound,
+                    _ => StatusCodes.Status500InternalServerError
+                };
 
                 // Set Content Type For Response
                 //context.Response.ContentType = "application/json"; // No need to make this step when using WriteAsJsonAsync 
@@ -36,7 +43,7 @@ namespace Store.G03.Api.CustomMiddleWare
                 // Response Object
                 var response = new ErrorToReturn()
                 {
-                    StatusCode = StatusCodes.Status500InternalServerError,
+                    StatusCode = context.Response.StatusCode,
                     ErrorMessage = ex.Message
                 };
 
