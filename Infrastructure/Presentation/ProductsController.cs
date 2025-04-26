@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Services.Abstractions;
 using Shared;
+using Shared.DataTransferObjects.ProductModuleDtos;
 
 namespace Presentation
 {

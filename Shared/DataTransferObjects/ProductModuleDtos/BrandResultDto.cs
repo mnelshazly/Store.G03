@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shared
+namespace Shared.DataTransferObjects.ProductModuleDtos
 {
-    public class TypeResultDto
+    public class BrandResultDto
     {
         public int Id { get; set; }
         public string Name { get; set; }
