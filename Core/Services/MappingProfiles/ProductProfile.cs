@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using Domain.Models.ProductModule;
-using Shared;
+using Shared.DataTransferObjects.ProductModuleDtos;
 
 namespace Services.MappingProfiles
 {

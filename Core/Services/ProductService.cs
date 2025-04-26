@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Domain.Contracts;
 using Domain.Exceptions;
-using Domain.Models.ProductModule;
+using Domain.Models;
 using Services.Abstractions;
 using Services.Specifications;
 using Shared;
+using Shared.DataTransferObjects.ProductModuleDtos;
 
 namespace Services
 {
