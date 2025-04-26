@@ -5,7 +5,7 @@ using Persistence;
 using Persistence.Data;
 using Services;
 using Services.Abstractions;
-
+using Store.G03.Api.CustomMiddleWare;
 using AssemblyMapping = Services.AssemblyReference;
 
 namespace Store.G03.Api
@@ -43,6 +43,9 @@ namespace Store.G03.Api
             #endregion
 
             // Configure the HTTP request pipeline.
+
+            app.UseMiddleware<CustomExceptionHandlerMiddleWare>();
+
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
