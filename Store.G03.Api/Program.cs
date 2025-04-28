@@ -1,9 +1,12 @@
 
 using Domain.Contracts;
+using Domain.Models.IdentityModule;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 using Persistence.Data;
+using Persistence.Idenetity;
 using Services;
 using Services.Abstractions;
 using Shared.ErrorModels;
@@ -26,17 +29,17 @@ namespace Store.G03.Api
 
             builder.Services.AddControllers();
             builder.Services.AddSwaggerServices();
-           
+
             builder.Services.AddInfrastructureServices(builder.Configuration);
             builder.Services.AddApplicationServices();
             builder.Services.AddWebApplicationServices();
-            
+
             #endregion
 
             var app = builder.Build();
 
             #region Seeding
-            
+
             await app.SeedDataBaseAsync();
 
             #endregion
@@ -44,7 +47,7 @@ namespace Store.G03.Api
             // Configure the HTTP request pipeline.
 
             #region Configure the HTTP request pipeline.
-            
+
             app.UseCustomExceptionMiddleWare();
 
             if (app.Environment.IsDevelopment())
@@ -58,8 +61,8 @@ namespace Store.G03.Api
             app.UseAuthorization();
 
 
-            app.MapControllers(); 
-            
+            app.MapControllers();
+
             #endregion
 
             app.Run();
