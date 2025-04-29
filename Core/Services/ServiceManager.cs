@@ -19,6 +19,7 @@ namespace Services
         public IBasketService BasketService => _LazyBasketService.Value;
         private readonly Lazy<IAuthenticationService> _LazyAuthenticationService = new Lazy<IAuthenticationService>(() => new AuthenticationService(userManager));
 
-        public IAuthenticationService authenticationService => _LazyAuthenticationService.Value;
+        public IAuthenticationService AuthenticationService => _LazyAuthenticationService.Value;
+
     }
 }

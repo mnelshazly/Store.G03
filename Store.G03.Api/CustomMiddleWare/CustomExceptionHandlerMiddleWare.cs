@@ -34,12 +34,12 @@ namespace Store.G03.Api.CustomMiddleWare
 
         private static async Task HandleExceptionAsync(HttpContext context, Exception ex)
         {
-            // Set Status Code For Response
+            var response = new ErrorToReturn()
+            {
+                ErrorMessage = ex.Message
+            };
 
-            //context.Response.StatusCode = (int) HttpStatusCode.InternalServerError;
-            //context.Response.StatusCode = StatusCodes.Status500InternalServerError;
-
-            context.Response.StatusCode = ex switch
+            response.StatusCode = ex switch
             {
                 NotFoundException => StatusCodes.Status404NotFound,
                 UnauthorizedException => StatusCodes.Status401Unauthorized,
@@ -47,20 +47,8 @@ namespace Store.G03.Api.CustomMiddleWare
                 _ => StatusCodes.Status500InternalServerError
             };
 
-            // Set Content Type For Response
-            //context.Response.ContentType = "application/json"; // No need to make this step when using WriteAsJsonAsync 
 
-            // Response Object
-            var response = new ErrorToReturn()
-            {
-                StatusCode = context.Response.StatusCode,
-                ErrorMessage = ex.Message
-            };
-
-            // Return Object As JSON
-            //var responseToReturn = JsonSerializer.Serialize(response);
-            //await context.Response.WriteAsync(responseToReturn);
-
+            context.Response.StatusCode = response.StatusCode;
             await context.Response.WriteAsJsonAsync(response);
         }
 
