@@ -42,6 +42,8 @@ namespace Store.G03.Api.CustomMiddleWare
             context.Response.StatusCode = ex switch
             {
                 NotFoundException => StatusCodes.Status404NotFound,
+                UnauthorizedException => StatusCodes.Status401Unauthorized,
+                BadRequestException badRequestException => GetBadRequestErrors(badRequestException, response),
                 _ => StatusCodes.Status500InternalServerError
             };
 
@@ -60,6 +62,12 @@ namespace Store.G03.Api.CustomMiddleWare
             //await context.Response.WriteAsync(responseToReturn);
 
             await context.Response.WriteAsJsonAsync(response);
+        }
+
+        private static int GetBadRequestErrors(BadRequestException badRequestException, ErrorToReturn? response)
+        {
+            response.Errors = badRequestException.Errors;
+            return StatusCodes.Status400BadRequest;
         }
 
         private static async Task HandleNotFoundEndPointAsync(HttpContext context)
