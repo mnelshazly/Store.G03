@@ -33,6 +33,7 @@ namespace Store.G03.Api
             builder.Services.AddInfrastructureServices(builder.Configuration);
             builder.Services.AddApplicationServices();
             builder.Services.AddWebApplicationServices();
+            builder.Services.AddJWTService(builder.Configuration);
 
             #endregion
 
@@ -57,10 +58,9 @@ namespace Store.G03.Api
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseRouting();
+            app.UseAuthentication();
             app.UseAuthorization();
-
-
             app.MapControllers();
 
             #endregion

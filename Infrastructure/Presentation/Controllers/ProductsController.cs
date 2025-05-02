@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Services.Abstractions;
 using Shared;
@@ -12,11 +13,12 @@ namespace Presentation.Controllers
 {
     public class ProductsController(IServiceManager serviceManager) : ApiBaseController
     {
+        [Authorize]
         [HttpGet] // GET: /api/products
         public async Task<ActionResult<PaginatedResult<ProductResultDto>>> GetAllProducts([FromQuery] ProductQueryParams queryParams)
         {
             var result = await serviceManager.ProductService.GetAllProductsAsync(queryParams);
-            if (result is null) return BadRequest(); // 400
+            //if (result is null) return BadRequest(); // 400
 
             return Ok(result); // 200
         }
